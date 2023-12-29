@@ -19,7 +19,7 @@ def actualizar_estado_bluetooth(nuevo_estado):
 def conectar_bluetooth():
     global conexion_serial
     try:
-        conexion_serial = serial.Serial("COM6", 9600)  # Reemplaza 'puerto_com' con tu puerto COM
+        conexion_serial = serial.Serial("COM6", 9600)
         actualizar_estado_bluetooth("Conectado")
     except Exception as e:
         print("Error al conectar:", e)
@@ -50,7 +50,7 @@ app.title("Controlador de Cámara")
 app.configure(bg='#0077be')  # Color de fondo estilo océano
 
 # Establecer el icono de la ventana
-ruta_icono = "./src/camera-icon.ico"  # Cambia esto por la ruta a tu archivo de icono
+ruta_icono = "./src/camera-icon.ico"  # Ruta al archivo de icono
 app.iconbitmap(ruta_icono)
 
 # Dimensiones de la ventana
