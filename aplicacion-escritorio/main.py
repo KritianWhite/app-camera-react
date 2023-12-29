@@ -7,6 +7,7 @@ import serial.tools.list_ports
 
 # Estado de conexión Bluetooth (por defecto 'Desconectado')
 estado_bluetooth = "Desconectado"
+websocket_server = None
 
 # Función para actualizar el estado de conexión Bluetooth
 def actualizar_estado_bluetooth(nuevo_estado):
@@ -19,8 +20,10 @@ def actualizar_estado_bluetooth(nuevo_estado):
 def conectar_bluetooth():
     global conexion_serial
     try:
-        conexion_serial = serial.Serial("COM6", 9600)
+        conexion_serial = serial.Serial("COM10", 9600, timeout=1)
+        conexion_serial.write(b'c')
         actualizar_estado_bluetooth("Conectado")
+        print("Conectado")
     except Exception as e:
         print("Error al conectar:", e)
         actualizar_estado_bluetooth("Error")
@@ -32,14 +35,34 @@ def desconectar_bluetooth():
     if conexion_serial and conexion_serial.is_open:
         conexion_serial.close()
         actualizar_estado_bluetooth("Desconectado")
+        print("Desconectado")
 
 
 def estabilizar_camara():
-    print("Estabilizando cámara...")
+    global conexion_serial
+    print("Estabilizando camara...")
+    if conexion_serial and conexion_serial.is_open:
+        try:
+            conexion_serial.write(b'a')  # Enviar carácter 'f' a Arduino
+            print("Carácter 'a' enviado a Arduino")
+        except Exception as e:
+            print("Error al enviar a Arduino:", e)
+    else:
+        print("Bluetooth no está conectado")
 
 
 def tomar_foto():
+    global conexion_serial
     print("Tomando foto...")
+    if conexion_serial and conexion_serial.is_open:
+        try:
+            conexion_serial.write(b'b')  # Enviar carácter 'f' a Arduino
+            print("Carácter 'b' enviado a Arduino")
+        except Exception as e:
+            print("Error al enviar a Arduino:", e)
+    else:
+        print("Bluetooth no está conectado")
+
 
 def subir_facebook():
     print("Subiendo foto a Facebook...")
