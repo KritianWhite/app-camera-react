@@ -60,6 +60,20 @@ def enviar_solicitud_capture_photo():
     except Exception as e:
         print("Error al realizar la solicitud:", e)
 
+'''
+Enviar a facebook
+      const response = await fetch(
+        "https://graph.facebook.com/v15.0/me/photos?access_token=EAAMeUmCcjUYBO9tAKCnFoBR8xs1BdQHRgvvNXCInnxyVZAFZCEhyTxDlTFAZAsvdUb1jcjZAL4reS7z4NQddYaZBVUjBkc8wZA2nlgtlxxIIUkycILC5KZBLHjbLNap5bbfbqfAcc38I8oEaO4fQX5o76tidkG8UQHzc1pv9ZC8TaKNPdQ3SX5358UXRmW1IvhHbZAoZBMku0ZD",
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+'''
+
+def enviar_foto_a_facebook():
+    url_facebook = 
+
 
 def ejecutar_asyncio_loop():
     loop = asyncio.new_event_loop()
